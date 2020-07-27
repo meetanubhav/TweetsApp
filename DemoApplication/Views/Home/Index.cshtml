@@ -1,0 +1,60 @@
+﻿@model DemoApplication.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="row">
+        <div class="col-md-6">
+        <h3 class="display-4">Latest Tweets <i class="fab fa-twitter text-info"></i></h3>
+            @foreach (var item in ViewBag.AllTweets)
+            {
+                <div class="card mt-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        <i class="fas fa-user"></i>
+                        @item.UserName</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">few hours ago</h6>
+                    <p class="card-text">@item.Tweets</p>
+                    @* <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a> *@
+                </div>
+                </div>
+                <hr>
+            }
+        </div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <h3 class="display-4">Welcome To TweetStar</h3>
+                <div class="jumbotron">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <form role="form" asp-action="Login" asp-controller="Account" method="post">
+
+                        <div class="form-group">
+                            <i class="fa fa-envelope"></i> <label asp-for="Email"></label>
+                            <input type="text" name="Email" asp-for="Email" class="form-control input-sm" autocomplete="off" data-val="true" data-val-required="The Email field is required." placeholder="Email" required>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-lock"></i> <label asp-for="Password"></label>
+                            <input type="text" name="Password" data-val="true" autocomplete="off" data-val-required="The Mobile field is required." asp-for="Password" class="form-control input-sm" placeholder="Password" required>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <input type="submit" value="Login" class="btn btn-info btn-info btn-block">
+                    </form>
+                        <a class="nav-link text-primary" asp-area="" asp-controller="Account" asp-action="Registration">
+                            Don't have an account ? Register
+                        </a>
+                </div>
+            </div>
+                @foreach (var item in ViewBag.NewUsers)
+                {
+                    
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong>@item.UserName !</strong> Joined TweetingApp Recently. <i class="fab fa-twitter"></i>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                }
+        </div>
+    </div>

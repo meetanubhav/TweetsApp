@@ -1,0 +1,56 @@
+﻿@model DemoApplication.Models.RegistrationViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row">
+    @if (TempData["validationmessage"] != null)
+    {
+        string alertType = "alert alert-" + TempData["alertType"];
+        <div class="@alertType">
+            <strong>Alert!</strong> @TempData["validationmessage"]
+        </div>
+    }
+</div>
+<h2 class="text-center">Register today to enjoy</h2>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="jumbotron">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form role="form" asp-action="Register" asp-controller="Account" method="post">
+
+                <div class="form-group">
+                    <i class="fa fa-user"></i> <label asp-for="Name"></label>
+                    <input type="text" name="Name" asp-for="Name" class="form-control input-sm" autocomplete="off" data-val="true" data-val-required="The Mobile field is required." placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fab fa-twitter"></i> <label asp-for="Mobile"></label>
+                    <input type="text" name="Mobile" data-val="true" autocomplete="off" data-val-required="The Mobile field is required." asp-for="Mobile" class="form-control input-sm" placeholder="Mobile">
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-envelope"></i> <label asp-for="Email"></label>
+                    <input type="email" name="Email" asp-for="Email" autocomplete="off" data-val="true" class="form-control input-sm" data-val-required="The Mobile field is required." placeholder="Email Address">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock"></i><label asp-for="Password"></label>
+                    <input type="password" name="Password" asp-for="Password" autocomplete="off" class="form-control input-sm" data-val="true" data-val-required="The Mobile field is required." placeholder="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock"></i><label asp-for="ConfirmPassword"></label>
+                    <input type="password" name="ConfirmPassword" asp-for="ConfirmPassword" autocomplete="off" class="form-control input-sm" placeholder="ConfirmPassword">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <input type="submit" value="Register" class="btn btn-info btn-block">
+                <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
+            </form>
+        </div>
+    </div>
+<div class="col-md-6 col-md-offset-3">
+    <img src="https://pngimg.com/uploads/twitter/twitter_PNG38.png" alt="displayImg">
+</div>
+</div>

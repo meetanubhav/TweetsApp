@@ -1,0 +1,40 @@
+﻿@model DemoApplication.Models.UserTweetVM
+@{
+    Layout = "_layoutUser";
+}
+<div class="container">
+        <h3>Start Tweeting . . .</h3>
+        <form method="POST">
+        <div class="form-group">
+            <input type="hidden" asp-for="UserId" class="form-control" id="userId" aria-describedby="tweetHelp" value=@Model.UserId>
+            <input type="hidden" asp-for="UserName" class="form-control" id="UserName" aria-describedby="tweetHelp" value=@Model.UserName>
+            <textarea type="text" asp-for="Tweets" class="form-control" id="inputTweet" aria-describedby="tweetHelp" placeholder="Start Tweeting in about 120 words" maxlength="120" required>
+            </textarea>
+            <small id="tweetHelp" class="form-text text-muted">Keep tweeting and stay happy.</small>
+        </div>
+        <button type="submit" asp-controller="Account" asp-action="PostTweet" class="btn btn-primary"><i class="fa fa-plus"></i> 
+        Post tweet</button>
+        </form>
+        <h4 class="mt-5">Latest tweets <i class="fab fa-twitter"></i></h4>
+
+    <div class="row">
+         @foreach (var item in ViewBag.AllTweets)
+            {
+                <div class="card mt-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        <i class="fas fa-user"></i>
+                        @item.UserName</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">few moments ago</h6>
+                    <p class="card-text">@item.Tweets</p>
+                    @* <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a> *@
+                </div>
+                </div>
+                <hr>
+            }
+    </div>
+</div>
+@section MyScripts{
+    
+}
